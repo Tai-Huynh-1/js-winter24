@@ -24,7 +24,7 @@ console.log(typeof membership, membership); // undefined
 membership = "gold"; // re-assignment using assignment operator = ; also notice we did not have to use the 'var' keyword again
 console.log(typeof membership, membership);
 
-var myName = true; // redeclaring variable: notice we use the 'var' keyword again / this is only possible with 'var'
+var myName = true; // REDECLARING variable: notice we use the 'var' keyword again with same variable name as line 17 / this is only possible with 'var'
 // var keyword should be avoided when writing our source code / transpiler/TS compiler will convert the source code to use "var" for compatibility reasons
 
 // other keywords for declaring variables
@@ -35,3 +35,6 @@ x = 15; // reassignment => valid
 // y = 20; // reassignment => invalid/illegal
 
 // use 'let' if you expect the variable to change; otherwise, use 'const'
+var myVarVariable; // allows reassignment so I can just declare variable without assigning value
+let myLetVariable; // allows reassignment so I can just declare variable without assigning value
+// const myConstVariable; // DOES NOT allow reassignment, so I must initialize with a value (can still assign it "undefined" explicitly)
