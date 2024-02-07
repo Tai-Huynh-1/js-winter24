@@ -26,6 +26,26 @@ let x = 8; // bin: 0000_1000 => 1*2^3 + 0 + 0 + 0 => 8
 // RGB (red, blue, green light) has a range of 0 to 255 in intensity
 
 // given 4 digits, => 2^4 => 16 different numbers => guess: 1111 => 8 + 4 + 2 + 1 => 15
-// with 4 digits/bits, I can represent the number 0 to 15
+// with 4 digits/bits, I can represent the number 0 to 15 (unsigned)
+// with 4 digits/bits, I can represent the number -8 to 7 (signed)
+// given x digits, -1*2^(x-1) to 1*2^(x-1)-1 (range of a signed number)
+
+// 15 => 1111 unsigned
+// 8 => 1000 unsigned
+// 7 (given 8 bits) => 0000_0111
+// 7 => 0111 => 7 signed => 1000 + 0001 => 1001 => -7
 
 // signed / unsigned / two's complement
+
+// dec => bin => hex
+
+// compare values
+// triple equal sign
+console.log("7" === 7); // false - comparing string to number (diff types)
+console.log(7 === 7); // true - comparing number type & number value
+
+// double equal sign
+console.log("7" == 7); // true - type conversion then compare value -> true
+console.log(7 == 7); // true
+
+// memory address (hex)
