@@ -33,8 +33,9 @@ let x = 8; // bin: 0000_1000 => 1*2^3 + 0 + 0 + 0 => 8
 // 8 digits/bits (unsigned), 2^8 = 256 diff. numbers => 0-> 255
 // 8 bits (signed), 2^8 = 256 diff., number range: -128 to 127
 
-// 15 => 1111 unsigned
-// 8 => 1000 unsigned
+// 15 => 1111 unsigned    || 7 = 0111 => 1000 + 0001 = 1001 - 0001 => 1000
+
+// 8 => 1000 unsigned || in a signed system 1000 = -8 ****
 // 7 (given 8 bits) => 0000_0111
 // 7 => 0111 => 7 signed => 1000 + 0001 => 1001 => -7
 // -8 = -7 - 1 => 1001 - 0001 = 1000
@@ -52,10 +53,12 @@ let x = 8; // bin: 0000_1000 => 1*2^3 + 0 + 0 + 0 => 8
 // triple equal sign: compares type then compares value
 console.log("7" === 7); // false - comparing string to number (diff type)
 console.log(7 === 7); // true - comparing number type & number value
+console.log(8 === 7); // false
 
 // double equal sign: convert type then compare value
 console.log("7" == 7); // true - type conversion then compare value -> true
 console.log(7 == 7); // true
+console.log(8 === 7); // false
 
 // other primitives
 console.log(0 === false); // false: diff type
