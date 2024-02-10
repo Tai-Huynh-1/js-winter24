@@ -10,21 +10,35 @@ console.log("arrA === arrC", arrA === arrC); // true: value look the same   fals
 console.log("arrC === arrD", arrC === arrD); // true: they look the same    false
 
 // examples of object manipulation
-function addGrocery(groceryList, item) {
-	groceryList.push(item);
+function replaceGrocery(groceryList, item) {
+	// groceryList = list // 0x5687DF - copy by value with pass by value
+	groceryList[0] = item;
 }
-const list = ["grapes"];
-console.log(list); // grapes
-addGrocery(list, "milk");
-console.log(list); // milk - grapes, milk
+
+const list = ["grapes"]; // 0x5687DF
+console.log(list); // ['grapes']
+replaceGrocery(list, "milk");
+console.log(list); // ['milk']
 
 // examples of primitives
-function modifyName(characterName, newName) {
-	console.log("character name BEFORE mod INSIDE FUNCTION", characterName);
-	characterName = newName;
-	console.log("character name AFTER mod INSIDE FUNCTION", characterName);
+function modifyName(oldName, newName) {
+	// function arguments are passed-by-value
+	console.log("character name BEFORE mod INSIDE FUNCTION", oldName); // Sam
+	oldName = newName;
+	console.log("character name AFTER mod INSIDE FUNCTION", oldName); // Jack
 }
+
 let characterName = "Sam";
 console.log("character name BEFORE mod.", characterName); // Sam
 modifyName(characterName, "Jack");
-console.log("character name AFTER mod", characterName); // Jack
+console.log("character name AFTER mod", characterName); // Sam
+
+let balance = 0;
+console.log(balance); // 0
+
+(function (currBalance, amount) {
+	currBalance = currBalance + amount;
+	console.log(currBalance); // 100
+})(balance, 100);
+
+console.log(balance); // 0
