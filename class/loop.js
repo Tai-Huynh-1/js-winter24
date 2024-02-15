@@ -54,3 +54,6 @@ function stringBuilder(arrayOfLetters) {
 console.log(stringBuilder(["h", "e", "l", "l", "o"])); // "hello"
 
 // strings with methods
+console.log("hello".concat(" world")); // primitive: string, undefined, null, boolean, number
+// ("hello"); // auto boxing -> turns a primitive into an object to perform a method then gets rid of the object in memory
+// []

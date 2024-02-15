@@ -34,3 +34,12 @@ function operator(num1, num2) {
 		console.log("num1 greater than num2");
 	}
 }
+
+// be careful where you return
+function div(a, b) {
+	console.log("world");
+
+	if (true) return;
+
+	console.log("hello");
+}
