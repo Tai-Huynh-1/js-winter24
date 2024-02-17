@@ -53,5 +53,14 @@ const sum = myArrowFuncB(5, 6);
 // 	console.log(el, idx, arr);
 // });
 
-// const reducedSum = [1, 2, 3, 4, 5, 6, 7, 8, 9].reduce((prevSum, el) => prevSum + el, 0);
+const reducedSum = [1, 2, 3, 4, 5, 6, 7, 8, 9].reduce((prevSum, el) => prevSum + el, 0);
 // console.log(reducedSum);
+
+// functions can be reused
+function sumReduce(array) {
+	return array.reduce((prevSum, currNum) => prevSum + currNum, 0);
+}
+
+// const ans1 = sumReduce([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+// const ans2 = sumReduce([1, 2, 3, 9]);
+// const ans3 = sumReduce([1, 2, 7, 8, 9]);
