@@ -6,12 +6,12 @@ function toTitleCase(str) {
 	for (let i = 0; i < arrOfWords.length; i++) {
 		const word = arrOfWords[i];
 		const firstChar = word.charAt(0).toUpperCase(); // word[0]
-		const newWord = firstChar + word.substring(1);
+		const newWord = firstChar + word.substring(1); // A + sdasSdsdaSDASDsds
 
 		arrOfWords[i] = newWord;
 	}
 
-	console.log(arrOfWords.join(" "));
+	// console.log(arrOfWords.join(" "));
 	return arrOfWords.join(" ");
 }
 
@@ -43,7 +43,7 @@ function removeDuplicates(arr) {
 function isPalindrome(str) {
 	return str.split("").reverse().join("") === str;
 }
-console.log(isPalindrome("cat"));
+// console.log(isPalindrome("cat"));
 
 // 1
 function findMax(arr) {
@@ -54,11 +54,11 @@ function findMax(arr) {
 	return max;
 }
 
-console.log(findMax([1, 2, 3, 3, 4, 5, 5]));
+// console.log(findMax([1, 2, 3, 3, 4, 5, 5]));
 
 // #8
 function reverseArray(arr) {
-	const reverseArray = [];
+	const reverseArray = []; // space: O(N), time: O(N)
 	for (let i = arr.length - 1; i >= 0; i--) {
 		const el = arr[i];
 		reverseArray.push(el);
@@ -66,17 +66,78 @@ function reverseArray(arr) {
 	return reverseArray;
 }
 
-console.log(reverseArray([1, 2, 3, 3, 4, 5, 5]));
+// console.log(reverseArray([1, 2, 3, 3, 4, 5, 5]));
 
 // #7
 function longestWord(sentence) {
 	let sentenceSplit = sentence.split(" ");
-	let longestWord = 0;
+	let longestLength = 0;
+	let longestWord = "";
 	for (let i = 0; i < sentenceSplit.length; i++) {
-		if (sentenceSplit[i].length > longestWord) {
-			longestWord = sentenceSplit[i].length;
+		if (sentenceSplit[i].length > longestLength) {
+			longestLength = sentenceSplit[i].length;
+			longestWord = sentenceSplit[i];
 		}
 	}
 	return longestWord;
 }
-console.log(longestWord("SDFfd Sdasdfsdf asdasSdsdaSDASDsdssadasds dsfsdf"));
+// console.log(longestWord("SDFfd Sdasdfsdf asdasSdsdaSDASDsdssadasds dsfsdf"));
+
+// reversing array
+function reverseInPlace(array) {
+	let left = 0;
+	let right = array.length - 1; // [6, 2, 3, 4, 5, 1]  temp = 1
+
+	while (left < right) {
+		let temp = array[left];
+		array[left] = array[right];
+		array[right] = temp;
+
+		left++;
+		right--;
+	}
+
+	return array;
+}
+
+// console.log(reverseInPlace([1, 2, 3, 4, 5, 6])); // N = 6, time: O(N)
+
+function inPlaceIsPalindrome(str) {
+	let left = 0;
+	let right = str.length - 1;
+
+	while (left < right) {
+		if (str[left] !== str[right]) return false; // c a t a s t r o p a c
+
+		left++;
+		right--;
+	}
+
+	return true;
+}
+
+// console.log(inPlaceIsPalindrome("racecar"));
+
+// a^2 + b^2 = c ; 0 <= c <= 100,000   intuition solve for a: a = sqrt(c - b^2) so: a <= sqrt(c)
+// return [a, b] if exist, otherwise return []; a === b is valid
+// c = 8; [2, 2] => 2^2 + 2^2 = 8
+// c = 5; [1, 2] => 1^2 + 2^2 = 5
+// c = 3; [];
+
+function findNum(c) {
+	let upperBound = Math.sqrt(c);
+
+	for (let a = 0; a <= upperBound; a++) {
+		for (let b = 0; b <= upperBound; b++) {
+			let sum = a * a + b * b;
+			if (sum === c) return [a, b];
+		}
+	}
+
+	return [];
+}
+
+console.log(findNum(8));
+console.log(findNum(5));
+console.log(findNum(3));
+console.log(findNum(400));
