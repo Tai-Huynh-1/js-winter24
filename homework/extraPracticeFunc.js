@@ -118,26 +118,50 @@ function inPlaceIsPalindrome(str) {
 
 // console.log(inPlaceIsPalindrome("racecar"));
 
-// a^2 + b^2 = c ; 0 <= c <= 100,000   intuition solve for a: a = sqrt(c - b^2) so: a <= sqrt(c)
+// a^2 + b^2 = c ; 0 <= c <= 100,489   intuition solve for a: a = sqrt(c - b^2) so: a,b <= sqrt(c)
 // return [a, b] if exist, otherwise return []; a === b is valid
 // c = 8; [2, 2] => 2^2 + 2^2 = 8
 // c = 5; [1, 2] => 1^2 + 2^2 = 5
 // c = 3; [];
 
 function findNum(c) {
-	let upperBound = Math.sqrt(c);
+	// let upperBound = Math.sqrt(c);
+	// for (let a = 0; a <= upperBound; a++) {
+	// 	for (let b = 0; b <= upperBound; b++) {
+	// 		let sum = a * a + b * b;
+	// 		if (sum === c) return [a, b];
+	// 	}
+	// }
 
-	for (let a = 0; a <= upperBound; a++) {
-		for (let b = 0; b <= upperBound; b++) {
-			let sum = a * a + b * b;
-			if (sum === c) return [a, b];
-		}
+	// range (0, sqrt(c))
+	let a = 0;
+	let b = Math.floor(Math.sqrt(c));
+	while (a <= b) {
+		const sum = a * a + b * b;
+		if (sum === c) return [a, b];
+		if (sum > c) b--;
+		if (sum < c) a++;
 	}
-
 	return [];
 }
 
 console.log(findNum(8));
 console.log(findNum(5));
 console.log(findNum(3));
-console.log(findNum(400));
+console.log(findNum(400)); // [12, 16], [0, 20]
+
+function nestedLooping() {
+	const N = 1000; // number of elements in a given input array
+	let counter = 0;
+	for (let i = 0; i < N; i++) {
+		for (let j = 0; j < N; j++) {
+			counter++;
+			console.log(counter);
+		}
+	}
+}
+// N = 10 => loops: 100
+// N = 100 (x10) => loops: 10,000 (x100)
+// N = 1000 (x10) => loops: 1,000,000 (x100)
+// O(N^2)
+// nestedLooping();

@@ -75,3 +75,24 @@ console.log(student1.getValue("phone"));
 
 student1.gradYear = 2023;
 console.log("after", student1);
+
+// chain .notations
+// "my string is hello world".split(" ").reverse()
+
+// build a user object
+// properties: name: string, phone: object(home: string, cell: string), email: string, website: string, age: number
+// cart: ["grapes"]
+//
+// methods: getName() -> name
+// getPhone(phoneType) -> appropriate phone number
+// getEmail()
+// addToCart(item) -> boolean (returns boolean indicating if item has been added successfully or not)
+
+const user = {
+	name: "User1",
+	email: "user1@gmail.com",
+	website: "www.user1.com",
+	age: 20,
+	phone: {},
+	cart: [],
+};
