@@ -69,12 +69,12 @@ student1.address.shippingAddress = "999 Wall St";
 student1.address["mailingAddress"] = "777 Main St"; // access / update object property with ["key"] notation
 // console.log("after", student1);
 
-console.log(student1.age);
+// console.log(student1.age);
 
-console.log(student1.getValue("phone"));
+// console.log(student1.getValue("phone"));
 
-student1.gradYear = 2023;
-console.log("after", student1);
+// student1.gradYear = 2023;
+// console.log("after", student1);
 
 // chain .notations
 // "my string is hello world".split(" ").reverse()
@@ -88,11 +88,83 @@ console.log("after", student1);
 // getEmail()
 // addToCart(item) -> boolean (returns boolean indicating if item has been added successfully or not)
 
-const user = {
+const user1 = {
 	name: "User1",
 	email: "user1@gmail.com",
 	website: "www.user1.com",
 	age: 20,
-	phone: {},
-	cart: [],
+	phone: {
+		home: "",
+		cell: "",
+	},
+	cart: ["grapes"],
+
+	// methods
+	getName() {
+		return this.name;
+	},
+	getPhone(phoneType) {
+		return this.phone[phoneType];
+	},
+	getEmail() {},
+	addToCart(item) {
+		this.cart.push(item);
+		return true;
+	},
+	removeFromCart(item) {
+		// this.cart = this.cart.filter((el) => el !== item);
+		// const index = this.cart.indexOf(item);
+		// if (index !== -1) {
+		// 	this.cart.splice(index, 1, "milk", "spoon");
+		// }
+	},
+	addNewPhone(phoneType, phoneNumber) {
+		this.phone[phoneType] = phoneNumber;
+	},
+	updateNewPhone(phoneType, newPhoneNumber) {
+		this.phone[phoneType] = newPhoneNumber;
+	},
 };
+
+// user1.addToCart("apples");
+// user1.addToCart("oranges");
+// console.log(user1.cart);
+// user1.removeFromCart("apples");
+// console.log(user1.cart);
+// user1.updateNewPhone("personal", "111-1111-111");
+// user1.addNewPhone("personal", "9999999999");
+// console.log(user1);
+
+// // deleting properies
+// delete user1.age;
+// console.log(user1);
+
+// Given an array integers/numbers, and a target
+// Find 2 numbers that add up to the target number and return the index of those 2 numbers
+// Ex: nums = [2, 7, 11, 15], target = 9
+// Output: [0, 1] => 2 + 7 = 9
+
+function twoSum(nums, target) {
+	// value at index i : index i
+	const prevNums = {
+		[nums[0]]: 0,
+	};
+
+	for (let i = 1; i < nums.length; i++) {
+		let diff = target - nums[i];
+		if (prevNums[diff] !== undefined) return [i, prevNums[diff]];
+
+		prevNums[nums[i]] = i;
+	}
+
+	return [];
+}
+
+console.log(twoSum([2, 7, 11, 15], 9));
+
+function indexOf(arr, target) {
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i] === target) return i;
+	}
+	return -1;
+}
