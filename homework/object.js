@@ -92,26 +92,28 @@ function countLetters2(sentence) {
 countLetters2("hello world hello");
 
 function find(array, target) {
-	// array.length: N => O(N)
+	// array.length: N => O(N) / O(N)
 }
 
 class MockMap {
 	array = [];
+	arraySize = 10;
 
 	set(key, value) {
-		const hashIndex = this.keyToNumber(key) % 10;
+		const hashIndex = this.keyToNumber(key) % this.arraySize; // 312 % 10 => 2
 		console.log(`your value will be stored at index ${hashIndex}`);
 		this.array[hashIndex] = value;
 	}
 
+	// O(1)
 	get(key) {
-		const hashIndex = this.keyToNumber(key) % 10;
+		const hashIndex = this.keyToNumber(key) % this.arraySize; // 312 % 10 => 2
 		console.log(`your value will be retrieved from index ${hashIndex}`);
 		return this.array[hashIndex];
 	}
 
 	keyToNumber(key) {
-		const chars = key.split("");
+		const chars = key.split(""); // ['c', 'a', 't'] | ['t', 'a', 'c'], // 97+99+116=312(cat)
 		return chars.reduce((accu, char) => {
 			const charCode = char.charCodeAt(0);
 			return accu + charCode;
@@ -120,5 +122,5 @@ class MockMap {
 }
 
 const mockMap = new MockMap();
-mockMap.set("h", 2);
+mockMap.set("h", "my secret value"); // key = cat, tac
 console.log(mockMap.get("h")); // 2

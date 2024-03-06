@@ -168,3 +168,56 @@ function indexOf(arr, target) {
 	}
 	return -1;
 }
+
+function countLetters2(sentence) {
+	const map = new Map();
+	const letters = sentence.split("");
+	letters.forEach((letter) => {
+		if (map.has(letter)) {
+			// O(1)
+			map.set(letter, map.get(letter) + 1);
+		} else {
+			map.set(letter, 1);
+		}
+		console.log(map);
+	});
+}
+
+countLetters2("hello world hello");
+
+function find(array, target) {
+	// array.length: N => O(N) / O(N)
+}
+
+class MockMap {
+	array = [];
+	arraySize = 10;
+
+	set(key, value) {
+		const hashIndex = this.keyToNumber(key) % this.arraySize; // 312 % 10 => 2
+		console.log(`your value will be stored at index ${hashIndex}`);
+		this.array[hashIndex] = value;
+	}
+
+	// O(1)
+	get(key) {
+		const hashIndex = this.keyToNumber(key) % this.arraySize; // 312 % 10 => 2
+		console.log(`your value will be retrieved from index ${hashIndex}`);
+		return this.array[hashIndex];
+	}
+
+	// return true if a key exist, false if it does not
+	has(key) {}
+
+	keyToNumber(key) {
+		const chars = key.split(""); // ['c', 'a', 't'] | ['t', 'a', 'c'], // 97+99+116=312(cat)
+		return chars.reduce((accu, char) => {
+			const charCode = char.charCodeAt(0);
+			return accu + charCode;
+		}, 0);
+	}
+}
+
+const mockMap = new MockMap();
+mockMap.set("h", "my secret value"); // key = cat, tac
+console.log(mockMap.get("h")); // 2
