@@ -1,0 +1,24 @@
+1. How do we compute the index from the key (string)?
+We compute the index by converting the key (string) into a number then perform key % array size.
+
+2. Why do we use the modulo operator % to get the hash index?
+We use modulo because it will always give us the answer between 0 and the array size - 1. So this is a proper index.
+
+3. What do we do with the hash index once we compute it?
+We store the value at the computed index in the array.
+
+4. What is the benefit of using a map over an array?
+- Store key/value pairs. Search runtime is O(1) constant time. Whereas arrays take O(n)
+
+5. What are the drawbacks or constraints of using a map versus an array to store information?
+- key collision is an issue (requires unique key)
+- uses more memory because it builds on top of an array
+- unique key constraints
+
+6. Implement a method has(key) for our MockMap data structure. The function should check if the key exists in the map or not. It should return true if the key exist and false if it doesn't.
+has(key){
+    if(array[hashIndex]){
+        return true;}
+    else{
+        return false;
+}

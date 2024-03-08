@@ -27,33 +27,33 @@ const car3 = generateCar("tesla", "2020", "white", "model y");
 // console.log(car3);
 
 // REAL CONSTRUCTOR FUNCTIONS
-function Car(brand, year, color, model) {
-	this.brand = brand;
-	this.year = year;
-	this.color = color;
-	this.model = model;
-}
-
-Car.prototype.honk = function () {
-	console.log("beep beep!");
-};
-
-// This is what the car object will look like
-// const car6 = {
-//     ... custom properties,
-//     prototype: {
-//         honk: function () {
-//             console.log("beep beep!");
-//         }
-//     }
+// function Car(brand, year, color, model) {
+// 	this.brand = brand;
+// 	this.year = year;
+// 	this.color = color;
+// 	this.model = model;
 // }
 
-const car4 = new Car("tesla", "2020", "red", "model 3");
-const car5 = new Car("toyota", "2022", "white", "prius");
-console.log(car4);
-console.log(car5);
-car4.honk();
-car5.honk();
+// Car.prototype.honk = function () {
+// 	console.log("beep beep!");
+// };
+
+// // This is what the car object will look like
+// // const car6 = {
+// //     ... custom properties,
+// //     prototype: {
+// //         honk: function () {
+// //             console.log("beep beep!");
+// //         }
+// //     }
+// // }
+
+// const car4 = new Car("tesla", "2020", "red", "model 3");
+// const car5 = new Car("toyota", "2022", "white", "prius");
+// console.log(car4);
+// console.log(car5);
+// car4.honk();
+// car5.honk();
 
 // student.address.getAddress = function () {};
 // student.address.getAddress();
@@ -94,5 +94,74 @@ class Store {
 	}
 }
 
-const paneraBread = new Store("Panera Bread", 10, "2024");
-console.log(paneraBread);
+// const paneraBread = new Store("Panera Bread", 10, "2024");
+// console.log(paneraBread);
+
+// create a parent class for inheritance
+class Vehicle {
+	year;
+	make;
+	model;
+	color;
+
+	constructor(year, make, model, color) {
+		this.year = year;
+		this.make = make;
+		this.model = model;
+		this.color = color;
+	}
+
+	useHorn() {
+		console.log("Vehicle: beep beep!");
+	}
+
+	start() {
+		console.log("starting Vehicle");
+	}
+
+	stop() {
+		console.log("turning off Vehicle");
+	}
+}
+
+class SUV extends Vehicle {
+	seats;
+
+	constructor(year, make, model, color, seats) {
+		super(year, make, model, color); // calling parent class constructor (Vehicle)
+		this.seats = seats;
+	}
+
+	// useHorn() {
+	// 	console.log("SUV: beep beep!");
+	// }
+
+	// start() {
+	// 	console.log("starting SUV");
+	// }
+
+	// stop() {
+	// 	console.log("turning off SUV");
+	// }
+}
+
+class Sedan {
+	seats;
+
+	constructor(year, make, model, color, seats) {
+		super(year, make, model, color);
+		this.seats = seats;
+	}
+
+	useHorn() {
+		console.log("Sedan: beep beep!");
+	}
+
+	start() {
+		console.log("starting Sedan");
+	}
+
+	stop() {
+		console.log("turning off Sedan");
+	}
+}

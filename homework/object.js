@@ -96,8 +96,12 @@ function find(array, target) {
 }
 
 class MockMap {
-	array = [];
+	array;
 	arraySize = 10;
+
+	constructor() {
+		this.array = new Array(10).fill("unused", 0);
+	}
 
 	set(key, value) {
 		const hashIndex = this.keyToNumber(key) % this.arraySize; // 312 % 10 => 2
@@ -112,6 +116,12 @@ class MockMap {
 		return this.array[hashIndex];
 	}
 
+	has(key) {
+		const hashIndex = this.keyToNumber(key) % this.arraySize;
+		if (this.array[hashIndex] === "unused") return false;
+		else return true;
+	}
+
 	keyToNumber(key) {
 		const chars = key.split(""); // ['c', 'a', 't'] | ['t', 'a', 'c'], // 97+99+116=312(cat)
 		return chars.reduce((accu, char) => {
@@ -122,5 +132,11 @@ class MockMap {
 }
 
 const mockMap = new MockMap();
-mockMap.set("h", "my secret value"); // key = cat, tac
-console.log(mockMap.get("h")); // 2
+mockMap.set("h", undefined); // key = cat, tac
+console.log(mockMap.has("h")); // 0
+console.log(mockMap.has("a")); // get item at 7th index since 'a' = 97
+
+// const m = new Map();
+// console.log(m.set("h", undefined));
+// console.log(m.has("h"));
+// console.log(m.has("a"));
