@@ -58,6 +58,8 @@ const car3 = generateCar("tesla", "2020", "white", "model y");
 // student.address.getAddress = function () {};
 // student.address.getAddress();
 
+// 4 OOP Principles: Inheritance, Encapsulation, Polymorphism, Abstraction
+
 // ES6 syntax => "class" keyword to create a class of object
 class Store {
 	name;
@@ -99,16 +101,37 @@ class Store {
 
 // create a parent class for inheritance
 class Vehicle {
-	year;
-	make;
-	model;
-	color;
+	#year;
+	#make;
+	#model;
+	#color;
 
 	constructor(year, make, model, color) {
-		this.year = year;
-		this.make = make;
-		this.model = model;
-		this.color = color;
+		this.#year = year;
+		this.#make = make;
+		this.#model = model;
+		this.#color = color;
+	}
+
+	getYear() {
+		return this.#year;
+	}
+
+	getMake() {
+		return this.#make;
+	}
+
+	getModel() {
+		return this.#model;
+	}
+
+	getColor() {
+		return this.#color;
+	}
+
+	setColor(color) {
+		if (typeof color !== "string") return;
+		this.#color = color;
 	}
 
 	useHorn() {
@@ -122,46 +145,84 @@ class Vehicle {
 	stop() {
 		console.log("turning off Vehicle");
 	}
+
+	prep() {
+		console.log("prepping vehicle to start");
+	}
 }
 
 class SUV extends Vehicle {
-	seats;
+	#seats;
 
 	constructor(year, make, model, color, seats) {
 		super(year, make, model, color); // calling parent class constructor (Vehicle)
+		this.#seats = seats;
+	}
+
+	getSeats() {
+		return this.#seats;
+	}
+
+	setSeats(num) {
+		if (typeof num !== "number") return;
+		this.#seats = num;
+	}
+
+	// Overriding parent methods using function signature
+	useHorn() {
+		console.log("SUV: beep beep!");
+	}
+
+	// Overriding parent + using parent's method via super
+	start() {
+		super.prep();
+		console.log("starting SUV");
+	}
+
+	stop() {
+		console.log("turning off SUV");
+	}
+}
+
+class Sedan {
+	year;
+	make;
+	model;
+	color;
+	seats;
+
+	constructor(year, make, model, color, seats) {
+		// super(year, make, model, color);
+		this.year = year;
+		this.make = make;
+		this.model = model;
+		this.color = color;
 		this.seats = seats;
 	}
 
 	// useHorn() {
-	// 	console.log("SUV: beep beep!");
+	// 	console.log("Sedan: beep beep!");
 	// }
 
 	// start() {
-	// 	console.log("starting SUV");
+	// 	console.log("starting Sedan");
 	// }
 
 	// stop() {
-	// 	console.log("turning off SUV");
+	// 	console.log("turning off Sedan");
 	// }
 }
 
-class Sedan {
-	seats;
+const sedan1 = new Sedan("2020", "honda", "civic", "grey", 5);
+const suv1 = new SUV("2015", "toyota", "highlander", "white", 7);
 
-	constructor(year, make, model, color, seats) {
-		super(year, make, model, color);
-		this.seats = seats;
-	}
+console.log(suv1.seats); // undefined (private variable now)
+console.log(suv1.getSeats()); // 7
 
-	useHorn() {
-		console.log("Sedan: beep beep!");
-	}
+suv1.setSeats("ten");
+console.log(suv1.getSeats()); // 7
 
-	start() {
-		console.log("starting Sedan");
-	}
+suv1.setSeats(10);
+console.log(suv1.getSeats()); // 10
 
-	stop() {
-		console.log("turning off Sedan");
-	}
-}
+console.log(suv1.getYear());
