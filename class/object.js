@@ -220,4 +220,51 @@ class MockMap {
 
 const mockMap = new MockMap();
 mockMap.set("h", "my secret value"); // key = cat, tac
-console.log(mockMap.get("h")); // 2
+// console.log(mockMap.get("h")); // 2
+
+// static methods
+class Shape {
+	static compareArea(shape1, shape2) {
+		if (shape1.calculateArea() > shape2.calculateArea()) return `${shape1.getName()} has an area larger than ${shape2.getName()}`;
+
+		return `${shape2.getName()} has an area larger than ${shape1.getName()}`;
+	}
+
+	name;
+	constructor(n) {
+		this.name = n;
+	}
+
+	getName() {
+		return this.name;
+	}
+}
+
+class Circle extends Shape {
+	radius;
+	constructor(n, r) {
+		super(n);
+		this.radius = r;
+	}
+	calculateArea() {
+		return this.radius * this.radius * 3.14;
+	}
+}
+
+class Rectangle extends Shape {
+	width;
+	height;
+	constructor(n, w, h) {
+		super(n);
+		this.width = w;
+		this.height = h;
+	}
+	calculateArea() {
+		return this.width * this.height;
+	}
+}
+
+const c = new Circle("circle", 2);
+const r = new Rectangle("rect", 2, 4);
+
+console.log(Shape.compareArea(c, r));
