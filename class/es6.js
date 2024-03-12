@@ -50,5 +50,19 @@ const user2 = {
 	...user,
 };
 
-console.log("user === user2", user === user2); // false
-console.log("user.address === user2.address", user.address === user2.address); // true
+// console.log("user === user2", user === user2); // false
+// console.log("user.address === user2.address", user.address === user2.address); // true
+
+// Array & Object destructuring
+const mailingAddress = "jackson ave";
+const {
+	address: { mailingAddress: wallStAddress },
+	courses: [class1, class2],
+} = user;
+
+// const mailingAddress = user.address.mailingAddress
+// const courses = user.courses
+// console.log(mailingAddress);
+// console.log(wallStAddress);
+console.log(class1);
+console.log(class2);
