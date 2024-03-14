@@ -64,5 +64,71 @@ const {
 // const courses = user.courses
 // console.log(mailingAddress);
 // console.log(wallStAddress);
-console.log(class1);
-console.log(class2);
+// console.log(class1);
+// console.log(class2);
+
+// high-order functions (HoF): functions that take in a function as parameter AND/OR returns a function
+// .map, .forEach, .filter, .reduce...
+
+// arrow functions
+const add2 = (a, b) => a + b;
+
+// closure: is created when a function is created, the closure guarantees that function will always have access
+// to the variable in its lexical scope at the time of the function's creation
+// we use this to hide variables
+function outer(a) {
+	return function (b) {
+		return a + b;
+	};
+}
+
+const inner = outer(5); // a = 5
+const result = inner(7); // b = 7
+// console.log(result);
+
+// hiding variables and exposing functionality using closure & functional programming
+function counter() {
+	let counter = 0;
+
+	function increase() {
+		counter++;
+		return counter;
+	}
+
+	function decrease() {
+		counter--;
+		return counter;
+	}
+
+	function getCounter() {
+		return counter;
+	}
+	return [getCounter, increase, decrease];
+}
+
+// functional programming
+const [getCounterA, incA, decA] = counter();
+const [getCounterB, incB, decB] = counter();
+incA();
+incA();
+// console.log(getCounterA()); // 2
+
+incB();
+decB();
+// console.log(getCounterB()); // 0
+
+// pure function: function should not mutate its given input, the function should only work with the resource (data)
+// given to it through its parameters
+const original = [1, 2, 3, 4];
+function impureFunc(array) {
+	for (let i = 0; i < array.length; i++) {
+		array[i] = array[i] + 2;
+	}
+	return array;
+}
+function pureFunc(array) {
+	return array.map((num) => num + 2);
+}
+const pfResult = pureFunc(original);
+console.log(pfResult);
+console.log(original);
