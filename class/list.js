@@ -43,7 +43,7 @@ function prepend(head, newNode) {
 function pop(head) {
 	let curr = head;
 
-	while (curr.next.next != null) {
+	while (curr.next.next && curr.next.next != null) {
 		curr = curr.next;
 	}
 
